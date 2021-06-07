@@ -21,12 +21,25 @@
 `timescale 1ns / 100ps
 
 module doorbell(
+    
     //Todo: define inputs here
+    input A,
+    input B,
+    input sel,
+    output out
     );
     
     //Todo: define registers and wires here
+    reg out;
 
 
-    //Todo: define your logic here                 
+    //Todo: define your logic here   
+    always @ (posedge clk)
+       if (sel) gein
+           #5 out <= A;
+       end
+       else begin
+           #5 out <= B
+       end              
       
 endmodule
