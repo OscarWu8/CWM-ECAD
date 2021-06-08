@@ -20,7 +20,7 @@
 
 module monitor (
 
-    //Todo: add ports 
+    //Todo: add ports asd
      input rst,
      input clk,
      input change,
@@ -32,17 +32,16 @@ module monitor (
      reg counter_out;
 
     //Todo: add user logic
-    always @(posedge clk)
-    if(rst) begin
+  always @(posedge clk) begin
+     if(rst)
         counter_out <= 0;
-    end
-    else if(change) begin
+     else if(change) begin
        if(on_off)
             counter_out <= counter_out + 1;
-        else 
+       else 
             counter_out <= counter_out - 1;
-    //counter value staying constant when change=0 is implied 
-    end
-
+     //counter value staying constant when change=0 is implied 
+     end
+   end
       
 endmodule
