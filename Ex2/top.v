@@ -23,8 +23,8 @@
 module doorbell(
     
     //Todo: define inputs here
-    input A,
-    input B,
+    input a,
+    input b,
     input sel,
     output out
     );
@@ -34,12 +34,12 @@ module doorbell(
 
 
     //Todo: define your logic here   
-    always @ (posedge clk)
-       if (sel) gein
-           #5 out <= A;
+    always @(*)
+       if (sel) begin
+           #5 out <= b;
        end
        else begin
-           #5 out <= B
+           #5 out <= a;
        end              
       
 endmodule
