@@ -19,12 +19,30 @@
 `timescale 1ns / 100ps
 
 module monitor (
-    //Todo: add ports 
 
+    //Todo: add ports 
+     input rst,
+     input clk,
+     input change,
+     input on_off,
+     output [7:0]counter_out
     );
                     
     //Todo: add registers and wires, if needed
+     reg counter_out;
 
     //Todo: add user logic
+    always @(posedge clk)
+    if(rst) begin
+        counter_out <= 0;
+    end
+    else if(change) begin
+       if(on_off)
+            counter_out <= counter_out + 1;
+        else 
+            counter_out <= counter_out - 1;
+    //counter value staying constant when change=0 is implied 
+    end
+
       
 endmodule
