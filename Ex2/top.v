@@ -30,7 +30,7 @@ module doorbell(
     );
     
     //Todo: define registers and wires here
-    reg out;
+    reg out; 
 
 
     //Todo: define your logic here   
