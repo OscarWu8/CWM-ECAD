@@ -25,7 +25,7 @@ module top_tb(
        clk = 1'b0;
        forever
          #(CLK_PERIOD/2) clk=~clk;
-     end
+    end
     
      //Stimulus logic
      initial begin
