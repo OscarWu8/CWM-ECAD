@@ -29,7 +29,7 @@ module monitor (
     );
                     
     //Todo: add registers and wires, if needed
-    //reg counter_out;
+    //reg counter_out;  
 
     //Todo: add user logic
   always @(posedge clk) begin
