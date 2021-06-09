@@ -16,3 +16,35 @@
 //  You need to write the whole file.
 //////////////////////////////////////////////////////////////////////////////////
 
+`timescale 1ns / 100ps
+
+module LED (
+
+    //add ports
+     input rst,
+     input clk,
+     input button,
+     output reg [2:0]colour
+    );
+
+    //no extra wires or regs needed
+
+    //add user logic
+   always @(posedge clk) begin
+       if(rst)
+          colour = 3'b001;
+       else begin
+          if(button) begin
+               if(colour<=3'b101)
+                  colour = colour + 3'b001;
+               else
+                  colour = 3'b001;
+          end
+          else
+               if(colour==3'b000||colour==3'b111)
+                  colour = 3'b001;
+       end
+   end
+endmodule
+
+
