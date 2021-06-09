@@ -44,48 +44,27 @@ module top_tb(
        on_off=1;
        err=0;
        counter_out_prev=0;
+       #(CLK_PERIOD*10)
+       if (counter_out!=0) begin
+          $display("TEST FAILED"); 
+          err=1; 
+       end
+       #(CLK_PERIOD*10)
+       rst=0;
+       if (counter_out!=0) begin
+          $display("TEST FAILED"); 
+          err=1; 
+       end
+       #(CLK_PERIOD*10)
+       change=1;
        
        forever begin
-       
-        //test 1
-         #CLK_PERIOD
-          if(rst==1 && counter_out!=0) begin
-            $display("TEST FAILED");
-            err=1; 
-          end
-        
-        //Test 2
-         #CLK_PERIOD 
-         rst=0;
-         #CLK_PERIOD
-         counter_out_prev=counter_out;
-          if(change==0 && counter_out!=counter_out_prev) begin
-            $display("TEST FAILED");
-            err=1; 
-          end
-
-        //Test 3
-         #CLK_PERIOD
-         change=1;
-         #CLK_PERIOD
-         counter_out_prev=counter_out;
-         if(on_off==1 && counter_out!=counter_out_prev+1) begin
-            $display("TEST FAILED");
-            err=1; 
-          end
-
-        //Test 4
-         #CLK_PERIOD
-         #CLK_PERIOD
-         on_off=0;
-         #CLK_PERIOD
-         counter_out_prev=counter_out;
-         if(on_off==0 && counter_out!=counter_out_prev-1) begin
-            $display("TEST FAILED");
-            err=1; 
-          end
-
-       end 
+       counter_out_prev=on_off ? counter_out_prev+1 : counter_out_prev-1;
+        if (counter_out_prev!=counter_out) begin
+          $display("TEST FAILED"); 
+          err=1; 
+        end
+       end
     end
 //Todo: Finish test, check for success
      initial begin
