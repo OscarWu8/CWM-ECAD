@@ -49,7 +49,7 @@ module top_tb(
           err=1; 
        end
 
-   //Test 2 Check if the counter value stays constant when change=0
+   //Test 2 Check for the case button=0
        #(CLK_PERIOD*2)
        rst=0;
        #CLK_PERIOD
@@ -58,7 +58,7 @@ module top_tb(
           err=1; 
        end
 
-   //Test 3 & 4 Check if the counter works properly when change=1
+   //Test 3 Check for the case button=1
        #(CLK_PERIOD*2)
        button=1;
        colour_prev=colour;
