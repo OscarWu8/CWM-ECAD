@@ -25,21 +25,22 @@ module monitor (
      input clk,
      input change,
      input on_off,
-     output [7:0]counter_out
+     output reg [7:0]counter_out
     );
                     
     //Todo: add registers and wires, if needed
-     reg counter_out;
+    //reg counter_out;
 
     //Todo: add user logic
   always @(posedge clk) begin
      if(rst)
         counter_out <= 0;
-     else if(change) begin
-       if(on_off)
-            counter_out <= counter_out + 1;
-       else 
-            counter_out <= counter_out - 1;
+     else begin
+       if(change)
+          if(on_off)
+               counter_out <= counter_out + 1;
+          else 
+               counter_out <= counter_out - 1;
      //counter value staying constant when change=0 is implied 
      end
    end
