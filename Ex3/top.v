@@ -20,7 +20,7 @@
 
 module monitor (
 
-    //Todo: add ports asd
+    //Todo: add ports
      input rst,
      input clk,
      input change,
@@ -44,5 +44,5 @@ module monitor (
      //counter value staying constant when change=0 is implied 
      end
    end
-      
+     
 endmodule
