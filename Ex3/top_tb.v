@@ -44,22 +44,31 @@ module top_tb(
        on_off=1;
        err=0;
        counter_out_prev=0;
-       #(CLK_PERIOD*10)
+       
+
+       #(CLK_PERIOD*3)
        if (counter_out!=0) begin
           $display("TEST FAILED"); 
           err=1; 
        end
-       #(CLK_PERIOD*10)
+
+
+       #(CLK_PERIOD*3)
        rst=0;
        if (counter_out!=0) begin
           $display("TEST FAILED"); 
           err=1; 
        end
-       #(CLK_PERIOD*10)
+
+
+       #(CLK_PERIOD*3)
        change=1;
        
        forever begin
+       #CLK_PERIOD
        counter_out_prev=on_off ? counter_out_prev+1 : counter_out_prev-1;
+       if(counter_out>=6)
+          on_off=~on_off;
         if (counter_out_prev!=counter_out) begin
           $display("TEST FAILED"); 
           err=1; 
