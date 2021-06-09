@@ -45,14 +45,14 @@ module top_tb(
        err=0;
        counter_out_prev=0;
        
-
+   //Test 1 Check if the reset function works properly
        #(CLK_PERIOD*3)
        if (counter_out!=0) begin
           $display("TEST FAILED"); 
           err=1; 
        end
 
-
+   //Test 2 Check if the counter value stays constant when change=0
        #(CLK_PERIOD*3)
        rst=0;
        if (counter_out!=0) begin
@@ -60,14 +60,14 @@ module top_tb(
           err=1; 
        end
 
-
+   //Test 3 & 4 Check if the counter works properly when change=1
        #(CLK_PERIOD*3)
        change=1;
        
        forever begin
        #CLK_PERIOD
        counter_out_prev=on_off ? counter_out_prev+1 : counter_out_prev-1;
-       if(counter_out>=6)
+       if(counter_out>=6)  //set a saturation value for the counter
           on_off=~on_off;
         if (counter_out_prev!=counter_out) begin
           $display("TEST FAILED"); 
