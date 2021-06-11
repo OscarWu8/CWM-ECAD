@@ -16,9 +16,20 @@
 module top(
     input clk_p,
     input clk_n,
-     //Todo: add all other ports besides clk_n and clk_p 
-   );
-    
+   //Todo: add all other ports besides clk_n and clk_p 
+    input rst_n,
+    input temperature_0,
+    input temperature_1,
+    input temperature_2,
+    input temperature_3,
+    input temperature_4,
+
+    output heating,
+    output cooling
+    );
+
+   //wires or regs
+    wire [4:0]temp = {temperature_4, temperature_3, temperature_2, temperature_1, temperature_0};
 
    /* clock infrastructure, do not modify */
         wire clk_ibufds;
@@ -36,6 +47,12 @@ module top(
 	.O  (clk)
       );
 
-//Add logic here
+   //Add logic here
+    aircon aircon_0(
+    .clk(clk),
+    .temp(temp),
+    .heating(heating),
+    .cooling(cooling),
+    );
 
 endmodule

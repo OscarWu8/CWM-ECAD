@@ -17,5 +17,44 @@ set_property BITSTREAM.CONFIG.SPI_FALL_EDGE YES        [current_design]
 #############################################################################################################
 
 
+## Physical Constraints
+
+
+# Setting I/O type
+set_property IOSTANDARD DIFF_SSTL12 [get_ports clk_n]
+set_property IOSTANDARD DIFF_SSTL12 [get_ports clk_p]
+set_property IOSTANDARD LVCMOS18 [get_ports heating]
+set_property IOSTANDARD LVCMOS18 [get_ports cooling]
+set_property IOSTANDARD LVCMOS18 [get_ports temperature_0]
+set_property IOSTANDARD LVCMOS18 [get_ports temperature_1]
+set_property IOSTANDARD LVCMOS18 [get_ports temperature_2]
+set_property IOSTANDARD LVCMOS18 [get_ports temperature_3]
+set_property IOSTANDARD LVCMOS18 [get_ports temperature_4]
+
+# Setiing I/O location
+set_property PACKAGE_PIN AY38 [get_ports clk_n]
+set_property PACKAGE_PIN AY37 [get_ports clk_p]
+set_property PACKAGE_PIN BD21 [get_ports rst_n]
+set_property PACKAGE_PIN AU22 [get_ports clk_n]
+set_property PACKAGE_PIN AT22 [get_ports clk_n]
+set_property PACKAGE_PIN BC21 [get_ports clk_n]
+set_property PACKAGE_PIN BB21 [get_ports clk_n]
+set_property PACKAGE_PIN BA20 [get_ports clk_n]
+set_property PACKAGE_PIN AL20 [get_ports clk_n]
+set_property PACKAGE_PIN AT20 [get_ports clk_n]
+
+# Connect reset to pull-up/pull-down
+set_property PULLUP true [get_ports rst_n]
+
+
+
+## Timing Constraints
+create_clock -period 10.0 -name clk [get_ports clk_p]
+set_clock_groups -asychronous -group [get_clocks clk -include_generated_clocks]
+
+
+
+
+
 
 
