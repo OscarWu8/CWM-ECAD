@@ -61,10 +61,12 @@ module top_tb(
    //Test 3 Check for the case button=1
        #(CLK_PERIOD*2)
        button=1;
+       #CLK_PERIOD
        colour_prev=colour;
        forever begin
           #CLK_PERIOD
-          colour_prev=colour<=3'b101 ? colour_prev+1 : 3'b001; 
+          if(button)
+              colour_prev=colour_prev<3'b110 ? colour_prev+1 : 3'b001; 
           if (colour_prev!=colour) begin
               $display("TEST FAILED"); 
               err=1; 
