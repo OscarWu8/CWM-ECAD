@@ -30,16 +30,10 @@ module multiplexer(
     );
     
     //Todo: define registers and wires here
-    wire out; 
+    wire [23:0]out; 
 
 
     //Todo: define your logic here   
-    always @(*)
-       if (sel) begin
-           #5 out <= b;
-       end
-       else begin
-           #5 out <= a;
-       end              
+     assign out = sel ? b : a;            
       
 endmodule
