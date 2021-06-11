@@ -22,8 +22,8 @@ module top_tb(
        //From the module
         reg clk; 
         reg sel;
-        reg button
-        reg rst
+        reg button;
+        reg rst;
         wire [23:0]light;
        //For testing purposes
         reg err;
@@ -48,7 +48,7 @@ module top_tb(
 
          err=0;
 
-         #(CLK_PERIOD*2)
+         #(CLK_PERIOD*3)
 
          //Test 1: check if the system outputs the white light when sel=0
           if(light!=24'hFFFFFF) begin
@@ -76,6 +76,8 @@ module top_tb(
          //Test 3: when reset is off, check if the system operates correctly
          rst = 0;
          forever begin
+              button = 1;
+              #(CLK_PERIOD*2)
               light_prev = light;
               #(CLK_PERIOD*3)
               //check if the system's output is changing when button=1
@@ -84,8 +86,9 @@ module top_tb(
                   err = 1;
               end
   
-              light_prev = light;
               button = 0;
+              #(CLK_PERIOD*2)
+              light_prev = light;
               #(CLK_PERIOD*3)
               //check if the system's output stays constant when button=0
               if(light_prev!=light) begin
@@ -100,7 +103,7 @@ module top_tb(
 
      //Finish test, check for success
          initial begin
-             #200 
+             #300 
              if (err==0)
                 $display("***TEST PASSED! :) ***");
                 $finish;

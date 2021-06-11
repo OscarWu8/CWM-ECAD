@@ -34,7 +34,7 @@ module LightSelector(
      wire [2:0]colour;
      wire [23:0]rgb;
      //define a reg to store white light
-     reg [23:0] white = 24'hFFFFFF;
+     wire [23:0] white = 24'hFFFFFF;
 
 
     //Instantiating all modules
